@@ -51,7 +51,7 @@ class Neuralnet(object):
         self.X = None
         self.y = None
         self.model = None
-        self.model_path = os.path.join(model_dir, 'mlp.model')
+        self.model_path = os.path.join(model_dir, 'ann.model')
         self.num_examples = 0 # training set size
         self.nn_input_dim = 2  # input layer dimensionality
         self.nn_output_dim = 2  # output layer dimensionality

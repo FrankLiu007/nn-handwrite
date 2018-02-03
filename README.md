@@ -1,3 +1,3 @@
 # nn-handwrite
 
-## mlp (artificial neural network or mutiple layer perceptron)
+## ann or mlp (artificial neural network or mutiple layer perceptron)
