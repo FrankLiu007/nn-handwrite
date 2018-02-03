@@ -95,7 +95,7 @@ class ANN(object):
         expect_label = np.argmax(probs, axis=1)
         return expect_label
 
-    def build_model(self, nn_hdim=5, num_passes=20000, print_loss=False):
+    def train(self, nn_hdim=5, num_passes=20000, print_loss=False):
         """
         This function learns parameters for the neural network and returns the model.
         nn_hdim: Number of nodes in the hidden layer
@@ -153,6 +153,6 @@ class ANN(object):
 
 if __name__ == '__main__':
     o = ANN()
-    o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
+    o.train(nn_hdim=4, num_passes=20000, print_loss=True)
     expect_label = o.predict(np.array([1.5215205, -0.1258923]))
     print expect_label
