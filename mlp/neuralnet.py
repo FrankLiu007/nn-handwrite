@@ -50,6 +50,8 @@ class Neuralnet(object):
     def __init__(self):
         self.X = None
         self.y = None
+        self.model = None
+        self.model_path = os.path.join(model_dir, 'mlp.model')
         self.num_examples = 0 # training set size
         self.nn_input_dim = 2  # input layer dimensionality
         self.nn_output_dim = 2  # output layer dimensionality
@@ -57,6 +59,7 @@ class Neuralnet(object):
         # Gradient descent parameters (I picked these by hand)
         self.epsilon = 0.01  # learning rate for gradient descent
         self.reg_lambda = 0.01  # regularization strength
+        self.load()
 
     def load(self):
         self.X, self.y = gen_data.gen_2dim_data()
@@ -80,7 +83,7 @@ class Neuralnet(object):
 
     def predict(self, x):
         """ Helper function to predict an output (0 or 1) """
-        model = cPickle.load(open(os.path.join(model_dir, 'mlp.model'), 'rb'))
+        model = cPickle.load(open(self.model_path, 'rb'))
         W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
         # Forward propagation
         z1 = x.dot(W1) + b1
@@ -105,7 +108,7 @@ class Neuralnet(object):
         b2 = np.zeros((1, self.nn_output_dim))
 
         # This is what we return at the end
-        model = {}
+        self.model = {}
 
         # Gradient descent. For each batch...
         for i in xrange(0, num_passes):
@@ -137,16 +140,16 @@ class Neuralnet(object):
             b2 += -self.epsilon * db2
 
             # Assign new parameters to the model
-            model = {'W1': W1, 'b1': b1, 'W2': W2, 'b2': b2}
+            self.model = {'W1': W1, 'b1': b1, 'W2': W2, 'b2': b2}
             # Optionally print the loss.
             # This is expensive because it uses the whole dataset, so we don't want to do it too often.
             if print_loss and i % 1000 == 0:
-                print "Loss after iteration %i: %f" % (i, self.calculate_loss(model))
-        cPickle.dump(model, open(os.path.join(model_dir, 'mpl.model'), 'wb'))
-        return model
+                print "Loss after iteration %i: %f" % (i, self.calculate_loss(self.model))
+        cPickle.dump(self.model, open(self.model_path, 'wb'))
+        return self.model
 
 
 if __name__ == '__main__':
     o = Neuralnet()
-    o.build_model(nn_hdim=4, num_passes=100, print_loss=True)
+    o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
     # o.predict()
