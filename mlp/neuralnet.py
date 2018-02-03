@@ -82,7 +82,7 @@ class Neuralnet(object):
         data_loss += self.reg_lambda / 2 * (np.sum(np.square(W1)) + np.sum(np.square(W2)))
         return 1. / self.num_examples * data_loss
 
-    def predict(self, x):
+    def predict(self, x=np.array([1.5215205, -0.1258923])):
         """ Helper function to predict an output (0 or 1) """
         model = cPickle.load(open(self.model_path, 'rb'))
         W1, b1, W2, b2 = model['W1'], model['b1'], model['W2'], model['b2']
