@@ -64,6 +64,7 @@ class Neuralnet(object):
     def load(self):
         self.X, self.y = gen_data.gen_2dim_data()
         self.num_examples = len(self.X)
+        print self.X, self.y
 
     # Helper function to evaluate the total loss on the dataset
     def calculate_loss(self, model):
@@ -151,5 +152,5 @@ class Neuralnet(object):
 
 if __name__ == '__main__':
     o = Neuralnet()
-    o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
-    # o.predict()
+    #o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
+    print o.predict(np.matrix([1.5215205, -0.1258923]))
