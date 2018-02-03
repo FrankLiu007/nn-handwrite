@@ -46,7 +46,7 @@ def lr(X, y):
     # plot_decision_boundary(lambda x: clf.predict(x))
     # plt.title("Logistic Regression")
 
-class Neuralnet(object):
+class ANN(object):
     def __init__(self):
         self.X = None
         self.y = None
@@ -152,7 +152,7 @@ class Neuralnet(object):
 
 
 if __name__ == '__main__':
-    o = Neuralnet()
+    o = ANN()
     o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
     expect_label = o.predict(np.array([1.5215205, -0.1258923]))
     print expect_label
