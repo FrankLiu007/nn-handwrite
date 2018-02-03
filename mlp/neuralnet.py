@@ -64,7 +64,7 @@ class Neuralnet(object):
     def load(self):
         self.X, self.y = gen_data.gen_2dim_data()
         self.num_examples = len(self.X)
-        print self.X, self.y
+        # print self.X, self.y
 
     # Helper function to evaluate the total loss on the dataset
     def calculate_loss(self, model):
@@ -92,7 +92,8 @@ class Neuralnet(object):
         z2 = a1.dot(W2) + b2
         exp_scores = np.exp(z2)
         probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
-        return np.argmax(probs, axis=1)
+        expect_label = np.argmax(probs, axis=1)
+        return expect_label
 
     def build_model(self, nn_hdim=5, num_passes=20000, print_loss=False):
         """
@@ -152,5 +153,6 @@ class Neuralnet(object):
 
 if __name__ == '__main__':
     o = Neuralnet()
-    #o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
-    print o.predict(np.matrix([1.5215205, -0.1258923]))
+    o.build_model(nn_hdim=4, num_passes=20000, print_loss=True)
+    expect_label = o.predict(np.array([1.5215205, -0.1258923]))
+    print expect_label
