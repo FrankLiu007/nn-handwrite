@@ -90,7 +90,7 @@ class Neuralnet(object):
         probs = exp_scores / np.sum(exp_scores, axis=1, keepdims=True)
         return np.argmax(probs, axis=1)
 
-    def build_model(self, nn_hdim, num_passes=20000, print_loss=False):
+    def build_model(self, nn_hdim=5, num_passes=20000, print_loss=False):
         """
         This function learns parameters for the neural network and returns the model.
         nn_hdim: Number of nodes in the hidden layer
@@ -147,4 +147,6 @@ class Neuralnet(object):
 
 
 if __name__ == '__main__':
-    pass
+    o = Neuralnet()
+    o.build_model(nn_hdim=4, num_passes=100, print_loss=True)
+    # o.predict()
