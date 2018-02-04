@@ -5,3 +5,9 @@ This package involves just one file "ann.py".You can execute "python ann/ann.py"
 ```
 python ann/ann.py
 ```
+
+## rnn
+The first part of rnn is training a rnn-language-model.
+```
+python rnn.py
+```
