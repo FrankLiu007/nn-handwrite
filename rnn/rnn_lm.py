@@ -106,5 +106,10 @@ class RNNNumpy:
             o[t] = softmax(self.V.dot(s[t]))
         return [o, s]
 
+    def predict(self, x):
+        # Perform forward propagation and return index of the highest score
+        o, s = self.forward_propagation(x)
+        return np.argmax(o, axis=1)
+
 
 RNNNumpy.forward_propagation = forward_propagation
