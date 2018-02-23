@@ -9,5 +9,5 @@ python ann/ann.py
 ## rnn
 The first part of rnn is training a rnn-language-model.
 ```
-python rnn.py
+python rnn_lm.py
 ```
