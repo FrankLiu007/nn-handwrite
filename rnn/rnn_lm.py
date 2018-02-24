@@ -129,7 +129,9 @@ class RNNNumpy:
         # For each time step...
         for t in np.arange(T):
             # Note that we are indxing U by x[t]. This is the same as multiplying U with a one-hot vector.
+            # U[:,x[t]] = 100*1, W.dot(s[t-1]) = 100*100 * 1*100
             s[t] = np.tanh(self.U[:,x[t]] + self.W.dot(s[t-1]))
+            # V.dot(s[t]) = 8000*100 * 1*100
             o[t] = softmax(self.V.dot(s[t]))
         return [o, s]
 
