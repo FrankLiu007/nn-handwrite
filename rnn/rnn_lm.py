@@ -1,21 +1,6 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
 
-'''
-
-@author: yangfengguang
-
-@license: (C) Copyright 2013-2017, Node Supply Chain Manager Corporation Limited.
-
-@contact: yangbisheng2009@gmail.com
-
-@file: rnn_lm.py
-
-@time: 2018/2/4 21:32
-
-@desc:
-
-'''
 import sys
 reload(sys)
 sys.setdefaultencoding('utf-8')

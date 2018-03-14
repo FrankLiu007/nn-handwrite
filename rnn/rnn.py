@@ -1,16 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: gb18030 -*-
-'''
-Copyright (c) Baidu.com, Inc. All Rights Reserved
 
-@Time     : 2018/2/27 15:50
-
-@Author   : yangfengguang
-
-@File     : rnn.py
-
-@Software : PyCharm
-'''
 import os
 import sys
 reload(sys)
