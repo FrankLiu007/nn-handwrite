@@ -104,9 +104,13 @@ class ANN(object):
         """
         # Initialize the parameters to random values. We need to learn these.
         np.random.seed(0)
+        # W1=2*5
         W1 = np.random.randn(self.nn_input_dim, nn_hdim) / np.sqrt(self.nn_input_dim)
+        # b1=1*5
         b1 = np.zeros((1, nn_hdim))
+        # W2=5*2
         W2 = np.random.randn(nn_hdim, self.nn_output_dim) / np.sqrt(nn_hdim)
+        # b2=1*2
         b2 = np.zeros((1, self.nn_output_dim))
 
         # This is what we return at the end
@@ -114,8 +118,8 @@ class ANN(object):
 
         # Gradient descent. For each batch...
         for i in xrange(0, num_passes):
-
             # Forward propagation
+            # num_examples*2 dot 2*5
             z1 = self.X.dot(W1) + b1
             a1 = np.tanh(z1)
             z2 = a1.dot(W2) + b2
