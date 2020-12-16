@@ -1,16 +1,15 @@
 #!/usr/bin/env python
-# -*- coding: gb18030 -*-
+
+import importlib
 
 import os
 import sys
-
-sys.setdefaultencoding('utf-8')
+importlib.reload(sys)
+#sys.setdefaultencoding('utf-8')
 
 import numpy as np
-##不同环境请，修改home_dir,
-# 请尽量设置为绝对路径，保证任何地方跑该代码都不出错
-home_dir = r"C:\Users\liuqimin\nn-handwrite"
 
+home_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), os.pardir)
 bin_dir = os.path.join(home_dir, 'bin')
 model_dir = os.path.join(home_dir, 'model')
 conf_dir = os.path.join(home_dir, 'conf')
@@ -20,7 +19,6 @@ log_dir = os.path.join(home_dir, 'log')
 sys.path.append(lib_dir)
 
 import tokenFile
-
 # 输出单元激活函数
 def softmax(x):
     x = np.array(x)
@@ -122,11 +120,11 @@ class myRNN:
 
             loss = self.loss(X_train, y_train)
             losses.append(loss)
-            print ('epoch {0}: loss = {1}'.format(epoch+1, loss) )
+            print( 'epoch {0}: loss = {1}'.format(epoch+1, loss) )
             # 若损失增加，降低学习率
             if len(losses) > 1 and losses[-1] > losses[-2]:
                 learning_rate *= 0.5
-                print( 'decrease learning_rate to', learning_rate )
+                print( 'decrease learning_rate to', learning_rate)
 
 
 unknown_token = 'UNKNOWN_TOKEN'
@@ -162,4 +160,4 @@ if __name__ == '__main__':
     rnn.train(X_train[:200], y_train[:200], learning_rate=0.005, n_epoch=10)
 
     sent_str = generate_text(rnn, dict_words, index_of_words)
-    print( 'Generate sentence:', sent_str )
+    print ('Generate sentence:', sent_str)

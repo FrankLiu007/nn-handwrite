@@ -11,3 +11,5 @@ The first part of rnn is training a rnn-language-model.
 ```
 python rnn_lm.py
 ```
+
+将原来的代码改为python3，修复部分bug，
