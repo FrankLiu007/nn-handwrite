@@ -1,10 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: gb18030 -*-
 
 import os
 import sys
 
-sys.setdefaultencoding('utf-8')
 
 import numpy as np
 ##不同环境请，修改home_dir,
@@ -154,7 +152,7 @@ def generate_text(rnn, dict_words, index_of_words):
     return new_sent_str
 
 if __name__ == '__main__':
-    file_path = r'../data/reddit-comments-2015-08.csv'
+    file_path = os.path.join(data_dir, r'reddit-comments-2015-08.csv')
     dict_size = 8000
     myTokenFile = tokenFile.tokenFile2vector(file_path, dict_size)
     X_train, y_train, dict_words, index_of_words = myTokenFile.get_vector()

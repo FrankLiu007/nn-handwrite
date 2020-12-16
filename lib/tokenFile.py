@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: gb18030 -*-
 
 import numpy as np
 import nltk, itertools, csv
@@ -9,7 +8,7 @@ unknown_token = 'UNKNOWN_TOKEN'
 start_token = 'START_TOKEN'
 end_token = 'END_TOKEN'
 
-# 解析评论文件为数值向量
+# 解析评论文件为数值向量(单词向量)
 class tokenFile2vector:
     def __init__(self, file_path, dict_size):
         self.file_path = file_path
@@ -18,12 +17,12 @@ class tokenFile2vector:
     # 将文本拆成句子，并加上句子开始和结束标志
     def _get_sentences(self):
         sents = []
-        with open(self.file_path, 'rb') as f:
+        with open(self.file_path, encoding=TXTCODING) as f:
             reader = csv.reader(f, skipinitialspace=True)
             # 去掉表头
-            reader.next()
+            #reader.
             # 解析每个评论为句子
-            sents = itertools.chain(*[nltk.sent_tokenize(x[0].decode(TXTCODING).lower()) for x in reader])
+            sents = itertools.chain(*[nltk.sent_tokenize(x[0].lower()) for x in reader])
             sents = ['%s %s %s' % (start_token, sent, end_token) for sent in sents]
             print( 'Get {} sentences.'.format(len(sents)) )
 
